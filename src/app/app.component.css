@@ -1,0 +1,12 @@
+.content {
+  width: 70% !important;
+}
+
+.centered {
+  margin: 0 auto;
+  text-align: center;
+}
+
+h4 {
+  font-weight: bold !important;
+}
