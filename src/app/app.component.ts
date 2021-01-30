@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
     this.findAllIngredientsByType('soft').subscribe(softs => { 
       this.softs = softs;
     });
-    this.findAllIngredientsByType('alcool').subscribe(autres => { 
+    this.findAllIngredientsByType('autre').subscribe(autres => { 
       this.autres = autres;
     });
   }
