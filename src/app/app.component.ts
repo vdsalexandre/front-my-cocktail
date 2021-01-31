@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Ingredient } from './ingredient';
 import { Urls } from './mycocktail-url';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -30,7 +31,18 @@ export class AppComponent implements OnInit {
   }
 
 
-  findAllIngredientsByType(type: string): Observable<Ingredient[]> {
-    return this.http.get<Ingredient[]>(Urls.FIND_ALL_INGREDIENTS_BY_TYPE_URL + type);
+  private findAllIngredientsByType(type: string): Observable<Ingredient[]> {
+    return this.http.get<Ingredient[]>(Urls.FIND_ALL_INGREDIENTS_BY_TYPE_URL + type).pipe(
+      tap(_ => console.log(`findAllIngredientsByType: result [ ok ]`)),
+      catchError(this.handleError<Ingredient[]>('findAllIngredientsByType', []))
+    );
+  }
+
+  private handleError<T>(operation='operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.log(error);
+      console.log(`${operation} failed: ${error.message}`);
+      return of(result as T);
+    }
   }
 }
