@@ -21,6 +21,15 @@ ul {
   padding: 0 !important;
 }
 
+li {
+  display: inline-block;
+  background: gold;
+  margin: 3px;
+  border: solid black 1px;
+  border-radius: 5px 5px 5px 5px;
+  cursor: pointer;
+}
+
 /* ---------------------------------------------------------------- */
 /* ----- DESKTOP                                                    */
 /* ---------------------------------------------------------------- */
