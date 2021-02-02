@@ -1,5 +1,5 @@
 .content {
-  width: 70% !important;
+  width: 100%;
 }
 
 .centered {
@@ -8,5 +8,24 @@
 }
 
 h4, h6 {
-  font-weight: bold !important;
+  font-weight: bold;
+}
+
+h5 {
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ul {
+  padding: 0 !important;
+}
+
+/* ---------------------------------------------------------------- */
+/* ----- DESKTOP                                                    */
+/* ---------------------------------------------------------------- */
+@media screen and (min-width: 1200px) {
+  .content {
+    width: 70% !important;
+  }
 }

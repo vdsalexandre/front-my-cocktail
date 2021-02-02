@@ -7,18 +7,25 @@
       <h6>Je cherche un cocktail qui contient : </h6>
     </div>
     <div class="col s12 #9c27b0 purple">
-      <ul>
-        <li *ngFor="let ingredient of alcools">{{ ingredient.nomIngredient }}</li>
-      </ul>
-    </div>
-    <div class="col s12 #9c27b0 pink">
-      <ul>
-        <li *ngFor="let ingredient of softs">{{ ingredient.nomIngredient }}</li>
-      </ul>
-    </div>
-    <div class="col s12 #9c27b0 blue">
-      <ul>
-        <li *ngFor="let ingredient of autres">{{ ingredient.nomIngredient }}</li>
+      <ul class="collapsible">
+        <li class="active">
+          <h5 class="collapsible-header"><i class="material-icons medium">liquor</i>Alcools</h5>
+          <ul class="collapsible-body">
+            <li *ngFor="let ingredient of alcools" id="{{ingredient.idIngredient}}">{{ingredient.nomIngredient}}</li>
+          </ul>
+        </li>
+        <li>
+          <h5 class="collapsible-header"><i class="material-icons">local_cafe</i>Softs</h5>
+          <ul class="collapsible-body">
+            <li *ngFor="let ingredient of softs">{{ingredient.nomIngredient}}</li>
+          </ul>
+        </li>
+        <li>
+          <h5 class="collapsible-header"><i class="material-icons">bakery_dining</i>Autres</h5>
+          <ul class="collapsible-body">
+            <li *ngFor="let ingredient of autres">{{ingredient.nomIngredient}}</li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>

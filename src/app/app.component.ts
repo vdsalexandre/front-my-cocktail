@@ -3,8 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Ingredient } from './ingredient';
 import { Urls } from './mycocktail-url';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { Response } from './Response';
+
+declare var $ : any;
 
 @Component({
   selector: 'app-root',
@@ -36,9 +38,15 @@ export class AppComponent implements OnInit {
     })
   }
 
+  ngAfterViewInit() {
+    $(function() {
+      $('.collapsible').collapsible();
+    });
+  }
+
   private isServerListening(): Observable<Response> {
     return this.http.get<Response>(Urls.CHECK_SERVER_STATUS_URL).pipe(
-      tap(response => console.log(`${response.httpCode} - ${response.message}`)),
+      tap(response => console.log(`httpCode: ${response.httpCode} - ${response.message}`)),
       catchError(this.handleError<Response>('isServerListening()'))
     );
   }
