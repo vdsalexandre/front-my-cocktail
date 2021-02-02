@@ -3,27 +3,28 @@
     <header class="col s12 #e91e63 pink">
       <h4>Where is my cocktail ??!</h4>
     </header>
-    <div class="col s12 #673ab7 deep-purple">
+    <div class="col s12 div-header">
       <h6>Je cherche un cocktail qui contient : </h6>
+      <p class="p-list-ingredient"></p>
     </div>
     <div class="col s12">
-      <ul class="collapsible">
-        <li class="active">
+      <ul class="collapsible #9c27b0 purple">
+        <li class="active li-collapsible-header">
           <h5 class="collapsible-header"><i class="material-icons medium">liquor</i>Alcools</h5>
           <ul class="collapsible-body #9c27b0 purple">
-            <li *ngFor="let ingredient of alcools" id="{{ingredient.idIngredient}}">{{ingredient.nomIngredient}}</li>
+            <li class="li-ingredient" *ngFor="let ingredient of alcools" id="{{ingredient.idIngredient}}">{{ingredient.nomIngredient}}</li>
           </ul>
         </li>
-        <li>
+        <li class="li-collapsible-header">
           <h5 class="collapsible-header"><i class="material-icons">local_cafe</i>Softs</h5>
           <ul class="collapsible-body #9c27b0 purple">
-            <li *ngFor="let ingredient of softs">{{ingredient.nomIngredient}}</li>
+            <li class="li-ingredient" *ngFor="let ingredient of softs">{{ingredient.nomIngredient}}</li>
           </ul>
         </li>
-        <li>
+        <li class="li-collapsible-header">
           <h5 class="collapsible-header"><i class="material-icons">bakery_dining</i>Autres</h5>
           <ul class="collapsible-body #9c27b0 purple">
-            <li *ngFor="let ingredient of autres">{{ingredient.nomIngredient}}</li>
+            <li class="li-ingredient" *ngFor="let ingredient of autres">{{ingredient.nomIngredient}}</li>
           </ul>
         </li>
       </ul>
