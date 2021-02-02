@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Ingredient } from './ingredient';
 import { Urls } from './mycocktail-url';
@@ -14,13 +14,14 @@ declare var $ : any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private renderer: Renderer2) { }
 
   private title: string = 'front-my-cocktail';
   alcools: Ingredient[];
   softs: Ingredient[];
   autres: Ingredient[];
   serverResponse: Response;
+  selectedIngredients: number[] = [];
 
   ngOnInit() {
     this.isServerListening().subscribe(response => {
@@ -42,6 +43,24 @@ export class AppComponent implements OnInit {
     $(function() {
       $('.collapsible').collapsible();
     });
+  }
+
+  toggleIngredient(event: any) {
+    const id: number = event.target.attributes.id.value;
+    const isSelected: boolean = event.target.classList.contains('selected');
+    
+    if (!isSelected) {
+      this.selectedIngredients.push(id);
+      this.renderer.addClass(event.target, 'selected');
+    }
+    else {
+      const index = this.selectedIngredients.indexOf(id);
+      if (index > -1)
+        this.selectedIngredients.splice(index, 1);
+      this.renderer.removeClass(event.target, 'selected');
+    }
+    console.log(this.selectedIngredients);
+    
   }
 
   private isServerListening(): Observable<Response> {

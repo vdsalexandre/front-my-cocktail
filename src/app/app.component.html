@@ -12,7 +12,10 @@
         <li class="active li-collapsible-header">
           <h5 class="collapsible-header"><i class="material-icons medium">liquor</i>Alcools</h5>
           <ul class="collapsible-body #9c27b0 purple">
-            <li class="li-ingredient" *ngFor="let ingredient of alcools" id="{{ingredient.idIngredient}}">{{ingredient.nomIngredient}}</li>
+            <li (click)="toggleIngredient($event)" 
+                class="li-ingredient" 
+                *ngFor="let ingredient of alcools" 
+                id="{{ingredient.idIngredient}}">{{ingredient.nomIngredient}}</li>
           </ul>
         </li>
         <li class="li-collapsible-header">
