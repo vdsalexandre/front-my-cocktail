@@ -20,14 +20,20 @@
         </li>
         <li class="li-collapsible-header">
           <h5 class="collapsible-header"><i class="material-icons">local_cafe</i>Softs</h5>
-          <ul class="collapsible-body #9c27b0 purple">
-            <li class="li-ingredient" *ngFor="let ingredient of softs">{{ingredient.nomIngredient}}</li>
+          <ul class="collapsible-body">
+            <li (click)="toggleIngredient($event)"
+                class="li-ingredient" 
+                *ngFor="let ingredient of softs"
+                id="{{ingredient.idIngredient}}">{{ingredient.nomIngredient}}</li>
           </ul>
         </li>
         <li class="li-collapsible-header">
           <h5 class="collapsible-header"><i class="material-icons">category</i>Autres</h5>
-          <ul class="collapsible-body #9c27b0 purple">
-            <li class="li-ingredient" *ngFor="let ingredient of autres">{{ingredient.nomIngredient}}</li>
+          <ul class="collapsible-body">
+            <li (click)="toggleIngredient($event)" 
+                class="li-ingredient" 
+                *ngFor="let ingredient of autres"
+                id="{{ingredient.idIngredient}}">{{ingredient.nomIngredient}}</li>
           </ul>
         </li>
       </ul>
