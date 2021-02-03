@@ -1,0 +1,26 @@
+.dropdown-trigger {
+    position: absolute !important;
+    top: 72px !important;
+    left: 15px !important;
+    background: #292107 !important;
+}
+
+#dropdownmenu {
+    position: absolute !important;
+    top: 109px !important;
+    left: 15px !important;
+    width: 250px !important;
+}
+
+/* ---------------------------------------------------------------- */
+/* ----- DESKTOP                                                    */
+/* ---------------------------------------------------------------- */
+@media screen and (min-width: 1200px) {
+    .dropdown-trigger {
+        left: 300px;
+    }
+    
+    #dropdownmenu {
+        width: 450px;
+    }
+}

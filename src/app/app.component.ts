@@ -42,6 +42,7 @@ export class AppComponent implements OnInit {
   ngAfterViewInit() {
     $(function() {
       $('.collapsible').collapsible();
+      $('.dropdown-trigger').dropdown();
     });
   }
 

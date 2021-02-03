@@ -8,10 +8,10 @@
       <p class="p-list-ingredient"></p>
     </div>
     <div class="col s12">
-      <ul class="collapsible #9c27b0 purple">
+      <ul class="collapsible">
         <li class="active li-collapsible-header">
           <h5 class="collapsible-header"><i class="material-icons medium">liquor</i>Alcools</h5>
-          <ul class="collapsible-body #9c27b0 purple">
+          <ul class="collapsible-body">
             <li (click)="toggleIngredient($event)" 
                 class="li-ingredient" 
                 *ngFor="let ingredient of alcools" 
@@ -25,7 +25,7 @@
           </ul>
         </li>
         <li class="li-collapsible-header">
-          <h5 class="collapsible-header"><i class="material-icons">bakery_dining</i>Autres</h5>
+          <h5 class="collapsible-header"><i class="material-icons">category</i>Autres</h5>
           <ul class="collapsible-body #9c27b0 purple">
             <li class="li-ingredient" *ngFor="let ingredient of autres">{{ingredient.nomIngredient}}</li>
           </ul>
@@ -34,4 +34,5 @@
     </div>
   </div>
 </div>
+<app-side-menu></app-side-menu>
 <app-home></app-home>

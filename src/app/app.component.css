@@ -56,15 +56,36 @@ li {
   margin: 0;
 }
 
+.collapsible-header {
+  padding: 0;
+  height: 50px;
+  line-height: 50px;
+}
+
+.collapsible-header i {
+  line-height: 40px;
+  margin-left: 10px;
+}
+
+.collapsible-body {
+  background: linear-gradient(90deg, rgba(49,27,146,1) 20%, rgba(106,27,154,1) 100%);
+}
+
 .li-ingredient {
   background: orange;
   padding: 5px;
   cursor: pointer;
   font-size: 18px;
   margin: 5px;
+  font-weight: normal;
 }
 
 .li-ingredient:hover {
+  font-weight: bolder;
+}
+
+.selected {
+  background: #34C924;
   font-weight: bolder;
 }
 
