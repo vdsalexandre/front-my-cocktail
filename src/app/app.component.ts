@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
   autres: Ingredient[];
   serverResponse: Response;
   selectedIngredients: number[] = [];
+  selectedNames: string[] = [];
 
   ngOnInit() {
     this.isServerListening().subscribe(response => {
@@ -48,20 +49,33 @@ export class AppComponent implements OnInit {
 
   toggleIngredient(event: any) {
     const id: number = event.target.attributes.id.value;
+    const name: string = event.target.innerText;
     const isSelected: boolean = event.target.classList.contains('selected');
     
     if (!isSelected) {
       this.selectedIngredients.push(id);
+      this.selectedNames.push(name);
       this.renderer.addClass(event.target, 'selected');
+      this.updateIngredientsText();
     }
     else {
       const index = this.selectedIngredients.indexOf(id);
-      if (index > -1)
+      if (index > -1) {
         this.selectedIngredients.splice(index, 1);
+        this.selectedNames.splice(index, 1);
+        this.updateIngredientsText();
+      }
       this.renderer.removeClass(event.target, 'selected');
     }
-    console.log(this.selectedIngredients);
-    
+  }
+
+  private updateIngredientsText() {
+    let ingredients = '';
+    this.selectedNames.forEach(ingredientName => {
+      ingredients += ingredientName + ', ';
+    });
+
+    $('.p-list-ingredient').text(ingredients.substr(0, ingredients.length - 2));
   }
 
   private isServerListening(): Observable<Response> {

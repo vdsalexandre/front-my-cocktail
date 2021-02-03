@@ -24,6 +24,11 @@ header {
   color: white;
 }
 
+.p-list-ingredient {
+  height: 15px;
+  font-size: 16px;
+}
+
 h4, h6 {
   font-weight: bold;
 }
