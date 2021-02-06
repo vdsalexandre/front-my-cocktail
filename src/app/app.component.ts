@@ -5,6 +5,8 @@ import { Ingredient } from './ingredient';
 import { Urls } from './mycocktail-url';
 import { catchError, tap } from 'rxjs/operators';
 import { Response } from './Response';
+import { Store } from '@ngrx/store';
+import { addIngredient } from './state/ingredient.action';
 
 declare var $ : any;
 
@@ -14,7 +16,9 @@ declare var $ : any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private http: HttpClient, private renderer: Renderer2) { }
+  constructor(private http: HttpClient, 
+              private renderer: Renderer2,
+              private store: Store) { }
 
   private title: string = 'front-my-cocktail';
   alcools: Ingredient[];
@@ -48,6 +52,7 @@ export class AppComponent implements OnInit {
   }
 
   toggleIngredient(event: any) {
+    this.store.dispatch(addIngredient())
     const id: number = event.target.attributes.id.value;
     const name: string = event.target.innerText;
     const isSelected: boolean = event.target.classList.contains('selected');
