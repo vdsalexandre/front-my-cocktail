@@ -1,5 +1,3 @@
-import { Ingredient } from "../ingredient";
-
 export interface AppState {
-    ingredients: ReadonlyArray<Ingredient>;
+    ingredients: ReadonlyArray<number>;
 }

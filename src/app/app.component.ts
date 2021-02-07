@@ -51,9 +51,9 @@ export class AppComponent implements OnInit {
     });
   }
 
-  toggleIngredient(event: any) {
-    this.store.dispatch(addIngredient())
-    const id: number = event.target.attributes.id.value;
+  toggleIngredient(event: any) {    
+    const id = event.target.attributes.id.value;
+    this.store.dispatch(addIngredient({ingredientId: id}));
     const name: string = event.target.innerText;
     const isSelected: boolean = event.target.classList.contains('selected');
     
