@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Ingredient } from './ingredient';
+import { Ingredient } from './model/ingredient';
 import { Urls } from './mycocktail-url';
 import { catchError, tap } from 'rxjs/operators';
 import { Response } from './Response';
 import { Store } from '@ngrx/store';
-import { addIngredient } from './state/ingredient.action';
+//import { addIngredient } from './state/ingredient.action';
 
 declare var $ : any;
 
@@ -53,8 +53,8 @@ export class AppComponent implements OnInit {
 
   toggleIngredient(event: any) {    
     const id = event.target.attributes.id.value;
-    this.store.dispatch(addIngredient({ingredientId: id}));
     const name: string = event.target.innerText;
+    // this.store.dispatch(ingredientAdded({IngredientState(id, name, 'alcool', [])}));
     const isSelected: boolean = event.target.classList.contains('selected');
     
     if (!isSelected) {

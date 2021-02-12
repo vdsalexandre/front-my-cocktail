@@ -1,6 +1,6 @@
 import { Ingredient } from "./ingredient";
 
-export interface Cocktail {
+export class Cocktail {
     idCocktail: number;
     nomCocktail: string;
     recetteCocktail: string;

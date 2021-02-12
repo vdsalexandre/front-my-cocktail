@@ -1,3 +1,5 @@
+import { Ingredient } from "../model/ingredient";
+
 export interface AppState {
-    ingredients: ReadonlyArray<number>;
+    ingredients: Ingredient[];
 }
