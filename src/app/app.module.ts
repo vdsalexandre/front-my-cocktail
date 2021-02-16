@@ -8,6 +8,7 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
 import { SearchMenuComponent } from './search-menu/search-menu.component';
 import { StoreModule } from '@ngrx/store';
 import { ingredientReducer } from './state/ingredient.reducer';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ingredientReducer } from './state/ingredient.reducer';
   imports: [
     BrowserModule,
     HttpClientModule,
-    StoreModule.forRoot({ingredients: ingredientReducer})
+    StoreModule.forRoot({ingredients: ingredientReducer}),
+    EffectsModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,25 +1,25 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import { Ingredient } from "../model/ingredient";
-import { retrieveIngredients } from "./ingredient.action";
+import { alcoolsLoaded } from "./ingredient.action";
+//import { retrieveIngredients } from "./ingredient.action";
 
 export type IngredientState = {
-    ingredients: Ingredient[]
+    alcools: Ingredient[],
+    softs: Ingredient[],
+    autres: Ingredient[]
 };
 
 export const initialState: IngredientState = {
-    ingredients: []
+    alcools: [],
+    softs: [],
+    autres: []
 };
-
-const onRetrieveIngredients = (state, { Ingredient }) => [...Ingredient];
-
-//const onIngredientAdded = (state, {ingredient}) => ({...state, ingredient});
 
 export const ingredientReducer = createReducer(
     initialState,
-    on(retrieveIngredients, onRetrieveIngredients)
-//    on(addIngredient, onIngredientAdded)
+    on(alcoolsLoaded, (state, { alcools }) => ({ ...state, ingredients: alcools }))
 );
 
-export function reducer(state: Ingredient | undefined, action: Action): IngredientState {
+export function reducer(state: IngredientState | undefined, action: Action) {
     return ingredientReducer(state, action);
 }
