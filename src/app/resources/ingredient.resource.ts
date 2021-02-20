@@ -4,7 +4,9 @@ import { Observable } from "rxjs";
 import { Ingredient } from "../model/ingredient";
 import { environment } from "./environment";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class IngredientResource {
     private ingredientApi = `${environment.host}/mycocktail/ingredient`;
 

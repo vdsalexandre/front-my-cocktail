@@ -9,6 +9,7 @@ import { SearchMenuComponent } from './search-menu/search-menu.component';
 import { StoreModule } from '@ngrx/store';
 import { ingredientReducer } from './state/ingredient.reducer';
 import { EffectsModule } from '@ngrx/effects';
+import { IngredientEffects } from './state/ingredient.effects';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { EffectsModule } from '@ngrx/effects';
     BrowserModule,
     HttpClientModule,
     StoreModule.forRoot({ingredients: ingredientReducer}),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([IngredientEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

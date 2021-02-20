@@ -6,13 +6,15 @@ import { alcoolsLoaded } from "./ingredient.action";
 export type IngredientState = {
     alcools: Ingredient[],
     softs: Ingredient[],
-    autres: Ingredient[]
+    autres: Ingredient[],
+    ingredients: Ingredient[]
 };
 
 export const initialState: IngredientState = {
     alcools: [],
     softs: [],
-    autres: []
+    autres: [],
+    ingredients: []
 };
 
 export const ingredientReducer = createReducer(
