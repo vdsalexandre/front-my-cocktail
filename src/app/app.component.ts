@@ -8,6 +8,7 @@ import { Response } from './Response';
 import { Store } from '@ngrx/store';
 import { IngredientResource } from './resources/ingredient.resource';
 import { state } from '@angular/animations';
+import { ServerStatus } from './resources/server-status.resource';
 //import { addIngredient } from './state/ingredient.action';
 
 declare var $ : any;
@@ -21,34 +22,21 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient, 
               private renderer: Renderer2,
               private store: Store,
-              private ingredientResource: IngredientResource) { }
+              private ingredientResource: IngredientResource,
+              private serverResource: ServerStatus) { }
 
   private title: string = 'front-my-cocktail';
   alcools: Ingredient[];
   softs: Ingredient[];
   autres: Ingredient[];
-  // serverResponse: Response;
+  serverStatus: Response;
   // selectedIngredients: number[] = [];
   // selectedNames: string[] = [];
 
   ngOnInit() {
-  //  this.store.dispatch()
-    // this.isServerListening().subscribe(response => {
-    //   if (response.httpCode === 200) {
-    //     this.findAllIngredientsByType('alcool').subscribe(alcools => { 
-    //       this.alcools = alcools;
-    //     });
-    //     this.findAllIngredientsByType('soft').subscribe(softs => { 
-    //       this.softs = softs;
-    //     });
-    //     this.findAllIngredientsByType('autre').subscribe(autres => { 
-    //       this.autres = autres;
-    //     });
-    //   }
-    // })
-    this.ingredientResource.getIngredientsByType('alcool').subscribe(alcools => this.alcools = alcools);
-    this.ingredientResource.getIngredientsByType('soft').subscribe(softs => this.softs = softs);
-    this.ingredientResource.getIngredientsByType('autre').subscribe(autres => this.autres = autres);
+    this.serverResource.getServerStatus().subscribe(status => {
+      this.checkServerStatus(status)
+    }, this.onServerUnavailable);
   }
 
   ngAfterViewInit() {
@@ -56,6 +44,18 @@ export class AppComponent implements OnInit {
       $('.collapsible').collapsible();
       $('.dropdown-trigger').dropdown();
     });
+  }
+
+  checkServerStatus(status: Response) {
+    if (status.httpCode === 200) {
+      this.ingredientResource.getIngredientsByType('alcool').subscribe(alcools => this.alcools = alcools);
+      this.ingredientResource.getIngredientsByType('soft').subscribe(softs => this.softs = softs);
+      this.ingredientResource.getIngredientsByType('autre').subscribe(autres => this.autres = autres);
+    }
+  }
+
+  onServerUnavailable() {
+    alert('Error - server is not responding ...');
   }
 
   toggleIngredient(event: any) {    
@@ -89,20 +89,6 @@ export class AppComponent implements OnInit {
 
   //   $('.p-list-ingredient').text(ingredients.substr(0, ingredients.length - 2));
   // }
-
-  private isServerListening(): Observable<Response> {
-    return this.http.get<Response>(Urls.CHECK_SERVER_STATUS_URL).pipe(
-      tap(response => console.log(`httpCode: ${response.httpCode} - ${response.message}`)),
-      catchError(this.handleError<Response>('isServerListening()'))
-    );
-  }
-
-  private findAllIngredientsByType(type: string): Observable<Ingredient[]> {
-    return this.http.get<Ingredient[]>(Urls.FIND_ALL_INGREDIENTS_BY_TYPE_URL + type).pipe(
-      tap(_ => console.log(`findAllIngredientsByType(${type}): result [ ok ]`)),
-      catchError(this.handleError<Ingredient[]>('findAllIngredientsByType', []))
-    );
-  }
 
   private handleError<T>(operation='operation', result?: T) {
     return (error: any): Observable<T> => {

@@ -8,7 +8,7 @@ import { environment } from "./environment";
     providedIn: 'root'
 })
 export class IngredientResource {
-    private ingredientApi = `${environment.host}/mycocktail/ingredient`;
+    private ingredientApi = `${environment.host}/ingredient`;
 
     constructor(private http: HttpClient) { }
 
