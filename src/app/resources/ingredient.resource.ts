@@ -1,18 +1,16 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { Ingredient } from "../model/ingredient";
-import { environment } from "./environment";
+import {HttpClient} from "@angular/common/http";
+import {Injectable} from "@angular/core";
+import {Observable} from "rxjs";
+import {Ingredient} from "../models/ingredient";
+import {Urls} from "./mycocktail-url";
 
 @Injectable({
     providedIn: 'root'
 })
 export class IngredientResource {
-    private ingredientApi = `${environment.host}/ingredient`;
-
     constructor(private http: HttpClient) { }
 
-    public getIngredientsByType(type: string): Observable<Ingredient[]> {
-        return this.http.get<Ingredient[]>(`${this.ingredientApi}/all/${type}`);
+    public getAllIngredientsByType(type: string): Observable<Ingredient[]> {
+      return this.http.get<Ingredient[]>(`${Urls.FIND_ALL_INGREDIENTS_BY_TYPE}/${type}`);
     }
 }

@@ -7,9 +7,9 @@ import { HomeComponent } from './home/home.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { SearchMenuComponent } from './search-menu/search-menu.component';
 import { StoreModule } from '@ngrx/store';
-import { ingredientReducer } from './state/ingredient.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { IngredientEffects } from './state/ingredient.effects';
+import {IngredientEffects} from "./store/ingredient.effects";
+import {ingredientReducer} from "./store/ingredient.reducer";
 
 @NgModule({
   declarations: [
